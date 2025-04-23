@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text to Excel</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <script>
+
+    function delayedAction(action, button) {
+      if (button.id !== 'endtime') {
+          button.disabled = true;
+      } else {
+        if(button.id=='endtime'){
+          document.getElementById('endtime').disabled = true;
+        }
+        enableAllButtons(); // Enable all buttons when "End Time" button is clicked
+      }
+      action();
+  }
+
+  function enableEndTimeButton() {
+    const buttons = document.querySelectorAll('.button-group1 button');
+    buttons.forEach(button => {
+      button.disabled = false;
+    });
+  }
+
+    function enableAllButtons() {
+      const buttons = document.querySelectorAll('.button-group button');
+      const buttons1 = document.querySelectorAll('.table-row button');
+      const buttons2 = document.querySelectorAll('.table-row select');
+      buttons.forEach(button => {
+        document.getElementById('starttime').disabled = true;
+        button.disabled = false;
+      });
+      buttons1.forEach(button => {
+        button.disabled = false;
+      });
+      buttons2.forEach(button => {
+        button.disabled = false;
+      });
+    }
+  
+    // Function to copy selected option to Excel
+    async function copySelectedOption() {
+      const selectedOption = document.getElementById("excelDropdown").value;
+      console.log(`Selected option: ${selectedOption}`);
+
+      try {
+        // Send an IPC event to the main process with the selected option
+        await window.electron.ipcRenderer.invoke('text-copied-2', selectedOption);
+        console.log(`Option "${selectedOption}" copied to Excel`);
+      } catch (error) {
+        console.error('Error copying option to Excel:', error.message);
+      }
+    }
+
+    async function copySelectedOption1() {
+      const selectedOption = document.getElementById("additionalDropdown").value;
+      console.log(`Selected option: ${selectedOption}`);
+
+      try {
+        // Send an IPC event to the main process with the selected option
+        await window.electron.ipcRenderer.invoke('text-copied-3', selectedOption);
+        console.log(`Option "${selectedOption}" copied to Excel`);
+      } catch (error) {
+        console.error('Error copying option to Excel:', error.message);
+      }
+    }
+    function quitApp() {
+      window.close(); // Close the window
+    }
+
+    async function copyToTransID() {
+      const userID = document.getElementById("userID").value;
+      console.log('Transaction ID Button clicked!');
+
+      try {
+        const TransText = await window.electron.ipcRenderer.invoke('clipboard-read-text');
+        console.log(`Text copied to Excel: ${TransText}`);
+
+        // Send an IPC event to the main process with the copied text
+        window.electron.ipcRenderer.send('trans-text-copied',{ text: TransText, userID: userID } );
+      } catch (error) {
+        console.error('Error reading clipboard:', error.message);
+      }
+    }
+
+    async function copyToErrorCode() {
+
+      console.log('Error Code Button clicked!');
+
+      try {
+        const ECtext = await window.electron.ipcRenderer.invoke('clipboard-read-text');
+        console.log(`Text copied to Excel: ${ECtext}`);
+
+        // Send an IPC event to the main process with the copied text
+        window.electron.ipcRenderer.send('EC-text-copied', ECtext);
+      } catch (error) {
+        console.error('Error reading clipboard:', error.message);
+      }
+    }
+
+    async function copyToErrorDesc() {
+
+      console.log('Error Description Button clicked!');
+
+      try {
+        const EDtext = await window.electron.ipcRenderer.invoke('clipboard-read-text');
+        console.log(`Text copied to Excel: ${EDtext}`);
+
+        // Send an IPC event to the main process with the copied text
+        window.electron.ipcRenderer.send('ED-text-copied', EDtext);
+      } catch (error) {
+        console.error('Error reading clipboard:', error.message);
+      }
+    }
+    // Recording time
+    async function recordTime() {
+      try {
+        await window.electron.ipcRenderer.invoke('record-time');
+        console.log("Time Entered");
+        enableAllButtons();
+        enableEndTimeButton();
+      } catch (error) {
+        console.error('Error recording time:', error.message);
+      }
+    }
+
+    async function recordTime2() {
+      try {
+        await window.electron.ipcRenderer.invoke('record-time2');
+        console.log("Time Entered");
+        enableAllButtons();
+        document.getElementById('starttime').disabled = false;
+      } catch (error) {
+        console.error('Error recording time:', error.message);
+      }
+    }
+  </script>
+  <div class="container">
+    <div class="title-bar">
+      <img class="logo" src="icon.png" alt="Logo">
+      <h1>MI 5 Excel Automation</h1>
+    </div>
+    <div class="user-input-container">
+      <input type="text" class="textbox" id="userID" placeholder="Enter User Name">
+    </div>
+
+    <div class="button-container">
+      <div class="button-group">
+        <button id="starttime" onclick="delayedAction(recordTime,this)">Start Time</button>
+      </div>
+      
+      <table>
+        <tr>
+          <div class="button-group">
+            <!-- <button onclick="delayedAction(copyToAwb,this)">AWB No.</button> -->
+            <button onclick="delayedAction(copyToTransID,this)" disabled>Tracking ID</button>
+          </div>
+        </tr>
+        <tr>
+          <div class="button-group">
+            <button onclick="delayedAction(copyToErrorCode,this)" disabled>Error Code</button>
+            <button onclick="delayedAction(copyToErrorDesc,this)" disabled>Error Description</button>
+          </div>
+        </tr>
+        
+        <table class="dropdownTable">
+          <tr class="table-row">
+            <th>
+              <select id="excelDropdown" disabled>
+                <option value="Select Option">Select Action</option>
+                <option value="Correct">Correct</option>
+                <option value="Jump">Jump</option>
+                <option value="Override">Override</option>
+                <option value="Transfer">Transfer</option>
+                <option value="Hold">Hold</option>
+              </select>
+            </th>
+            <th>
+              <select id="additionalDropdown" disabled>
+                <option value="Select Option">Select Process</option>
+                <option value="Domestic Non-Automation">Domestic Non-Au</option>
+                <option value="Domestic Automation">Domestic Auto</option>
+                <option value="International">International</option>
+                <option value="ADT">ADT</option>
+                <option value="FTN">FTN</option>
+              </select>
+            </th>
+          </tr>
+          <tr class="table-row">
+            <th>
+              <button id="copySelectedButton" onclick="delayedAction(copySelectedOption,this)" disabled>Insert to Excel</button>
+            </th>
+            <th>
+              <button id="copySelectedButton" onclick="delayedAction(copySelectedOption1,this)" disabled>Insert to Excel</button>
+            </th>
+          </tr>
+        </table>
+          <div class="button-group1">
+            <button id="endtime" onclick="delayedAction(recordTime2,this)" disabled>End Time</button>
+          </div>
+    </div>
+    <button id="quitButton" onclick="quitApp()">EXIT</button>
+    <div class="watermark">v1.0.2</div>
+  </div>
+</body>
+</html>

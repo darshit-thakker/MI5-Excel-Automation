@@ -1,0 +1,253 @@
+.title-bar {
+    -webkit-app-region: drag;
+    background-color: #000000;
+    color: white;
+    margin-top: 50px;
+  }
+  body {
+    font-family: "Serif";
+    background-color: rgb(0, 0, 0);
+    border-radius: 15px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .container {
+    background-color: rgb(0, 0, 0);
+    border-radius: 15px;
+    box-shadow: 0 10pxbox 30px rgba(0, 0, 0, 0.3);
+    padding: 10px; /* Adjusted padding */
+    text-align: center;
+    max-width: 280px; /* Adjusted max-width */
+    width: 100%;
+    position: relative;
+  }
+  .logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30px; /* Adjusted width */
+    border-radius: 30%;
+  }
+  h1 {
+    color: #ffffff;
+    margin-bottom: 20px; /* Adjusted margin */
+    font-size: 24px; /* Adjusted font size */
+    font-weight: bold;
+    letter-spacing: 1px; /* Adjusted letter spacing */
+    text-transform: uppercase;
+  }
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 10px;
+    align-items: center; /* Align buttons vertically */
+  }
+  
+  .button-group button {
+    background-color: #86bc24;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    outline: none;
+  }
+  .button-group button:disabled {
+    background-color: #6c52af; /* Dark purple background color for disabled state */
+    transition: background-color 0.5s ease;
+    cursor: not-allowed; /* Change cursor to not-allowed */
+    opacity: 0.7; /* Reduce opacity for a faded appearance */
+    box-shadow: none; /* Remove box shadow */
+    filter: grayscale(80%); /* Apply grayscale filter for a desaturated look */
+  }
+   
+  /* Optional: Hover effect for disabled buttons */
+  .button-group button:disabled:hover {
+    opacity: 0.8; /* Increase opacity on hover */
+  }
+   
+  .button-group button:hover {
+    background-color: #4d148c;
+  }
+
+  .button-group1 {
+    display: flex;
+    gap: 10px;
+    align-items: center; /* Align buttons vertically */
+  }
+  
+  .button-group1 button {
+    background-color: #86bc24;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    outline: none;
+  }
+  .button-group1 button:disabled {
+    background-color: #6c52af; /* Dark purple background color for disabled state */
+    transition: background-color 0.5s ease;
+    cursor: not-allowed; /* Change cursor to not-allowed */
+    opacity: 0.7; /* Reduce opacity for a faded appearance */
+    box-shadow: none; /* Remove box shadow */
+    filter: grayscale(80%); /* Apply grayscale filter for a desaturated look */
+  }
+   
+  /* Optional: Hover effect for disabled buttons */
+  .button-group1 button:disabled:hover {
+    opacity: 0.8; /* Increase opacity on hover */
+  }
+   
+  .button-group1 button:hover {
+    background-color: #4d148c;
+  }
+  br {
+    display: block;
+    margin-bottom: 200px; /* Adjust the value as needed */
+  }
+  
+  #copySelectedButton {
+    background-color: #86bc24;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    outline: none;
+  }
+  #copySelectedButton:disabled {
+    background-color: #6c52af; /* Dark purple background color for disabled state */
+    transition: background-color 0.5s ease;
+    cursor: not-allowed; /* Change cursor to not-allowed */
+    opacity: 0.7; /* Reduce opacity for a faded appearance */
+    box-shadow: none; /* Remove box shadow */
+    filter: grayscale(80%); /* Apply grayscale filter for a desaturated look */
+  }
+   
+  #copySelectedButton:disabled:hover {
+    opacity: 0.8; /* Increase opacity on hover */
+  }
+  #copySelectedButton:hover {
+    background-color: #4d148c;
+  }
+  
+  #excelDropdown {
+    background-color: #4d148c;
+    color: #ffffff;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  #excelDropdown option {
+    padding: 5px;
+  }
+  #excelDropdown:focus {
+    border: 2px solid #86bc24;
+  }
+  
+  #additionalDropdown {
+    background-color: #4d148c;
+    color: #ffffff;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  #additionalDropdown option {
+    padding: 5px;
+  }
+  
+  #quitButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #86bc24;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    width: fit-content;
+    outline: none;
+  }
+  
+  #quitButton:hover {
+    background-color: #4d148c;
+  }
+  
+  .notification {
+    position: fixed;
+    top: 20px;
+    /* Adjust top position */
+    right: 20px;
+    /* Adjust right position */
+    max-width: calc(100vw - 40px);
+    /* Set max-width to prevent overflow */
+    max-height: calc(100vh - 40px);
+    /* Set max-height to prevent overflow */
+    background-color: #f0f0f0;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: none;
+    overflow: auto;
+    /* Enable scrolling if content overflows */
+  }
+  .textbox {
+  width: 200px;
+  height: 10px;
+  padding: 10px;
+  font-size: 12px;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(to right,#fff, #000);
+  color: #000000;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  outline: none;
+  transition: 0.3s;
+}
+ 
+.textbox::placeholder {
+  color: rgb(0, 0, 0);
+}
+ 
+.textbox:focus {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+}
+  .watermark {
+    position: absolute;
+    bottom: -5px;
+    right: 10px;
+    color: rgba(190, 190, 190, 0.5);
+    font-size: 14px;
+  }

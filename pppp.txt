@@ -1,0 +1,81 @@
+OneDrive - MyFedEx', 'Software Testing
+
+OneDrive - Deloitte (O365D)', 'TEST'
+
+html
+ //async function copyToAwb() {
+    //console.log('AWB Button clicked!');
+
+    //  try {
+     //   const AwbText = await window.electron.ipcRenderer.invoke('clipboard-read-text');
+     //   console.log(`Text copied to Excel: ${AwbText}`);
+
+        // Send an IPC event to the main process with the copied text
+     //   window.electron.ipcRenderer.send('awb-text-copied', AwbText);
+     // } catch (error) {
+      //  console.error('Error reading clipboard:', error.message);
+     // }
+    //}
+
+    main.js
+    // ipcMain.on('awb-text-copied',(event, text) => {
+  //   copyToAwb(text)
+  //     .then(() => {
+  //       console.log('Text copied to Excel');
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error copying text to Excel:', error);
+  //     });
+  // });
+
+  // async function copyToAwb(text) {
+//   const username = os.userInfo().username;
+//   const homeDir = os.homedir(); // Get the user's home directory
+//   const excelFileName = `${username}_MI5_Agent_Cases.xlsx`;
+//   const excelFilePath = path.join(homeDir, 'OneDrive - MyFedEx', 'Software Testing', excelFileName);
+//   const workbook = new exceljs.Workbook(); 
+ 
+//   try {
+//     await workbook.xlsx.readFile(excelFilePath);
+//   } catch (error) {
+//     console.log('Creating a new workbook.');
+//   }
+ 
+//   const sheet = workbook.getWorksheet('Sheet1') || workbook.addWorksheet('Sheet1');
+ 
+//   let nextRow = 1;
+ 
+//   const headersExist = sheet.getCell(1, 1).value !== null;
+ 
+//   if (!headersExist) {
+//     const headers = ['Sr. No.', 'AWB'];
+//     headers.forEach((header, columnIndex) => {
+//       const cell = sheet.getCell(nextRow, columnIndex + 1);
+//       cell.value = header;
+//       cell.font = { bold: true };
+//     });
+//     nextRow++;
+//   } else {
+//     while (sheet.getCell(nextRow, 2).value) {
+//       nextRow++;
+//     }
+//   }
+
+//   const serialNumber = nextRow - 1;
+//   // Insert serial number
+//   sheet.getCell(nextRow, 1).value = serialNumber;
+ 
+//   const targetColumns = ['AWB'];
+//   targetColumns.forEach((columnName, columnIndex) => {
+//     sheet.getCell(nextRow, columnIndex + 2).value = text;
+//   });
+
+//   try {
+//     await workbook.xlsx.writeFile(excelFilePath);
+//     printWithNotification('Success', `Text "${text}" pasted to Excel at Row ${nextRow}, Column: ${targetColumns}`);
+//     console.log(`Text "${text}" pasted to Excel at Row ${nextRow}, Column: ${targetColumns}`);
+//   } catch (writeError) {
+//     console.log('Error writing to Excel file: ' + writeError.message);
+//     printWithNotification('Error', 'Error writing to Excel file: ' + writeError.message);
+//   }
+// }
